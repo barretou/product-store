@@ -6,7 +6,7 @@ import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
 // angular
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ProductsService } from '../../shared/services/products.service';
 
 @Component({
@@ -19,19 +19,25 @@ import { ProductsService } from '../../shared/services/products.service';
 export class CreateComponent {
   _productService = inject(ProductsService)
   _snackBar = inject(MatSnackBar)
+  _router = inject(Router)
 
   form = new FormGroup({
     title: new FormControl<string>('', {nonNullable: true, validators: Validators.required})
   });
 
-  public onSubmit() {
+  public createProduct() {
     const payload = { title: this.form.controls.title.value };
-    this._productService.create(payload).subscribe(() => {
-      this.openSnackBar("Produto criado com sucesso!", "fechar")
-    });
+    this._productService.create(payload).subscribe({
+      next: () => {
+        this.openSnackBar("Produto criado com sucesso!", "Fechar");
+      },
+      error: (e) => {
+        this.openSnackBar(`Falha ao criar o produto. ${e}`, "Fechar");
+      }
+    })
   }
 
   private openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action);
+    this._snackBar.open(message, action, { duration: 3000, horizontalPosition: "end", verticalPosition: "top" });
   }
 }

@@ -2,7 +2,7 @@
     <div class="create-product-button-container">
         <a mat-button class="back-button-container" color="primary" [routerLink]="['/']">VOLTAR</a>
     </div>
-    <form class="form-layout" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <form class="form-layout" [formGroup]="form" (ngSubmit)="createProduct()">
         <mat-form-field class="example-full-width">
             <input matInput type="text" formControlName="title" placeholder="Título">
         </mat-form-field>

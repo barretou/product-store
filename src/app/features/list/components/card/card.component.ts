@@ -19,13 +19,18 @@ export class CardComponent {
   @Input({ required: true }) product!: Product;
 
   public async deleteProduct(id : number) {
-    this._productService.delete(id).subscribe(() => {
-      this.openSnackBar("Produto deletado com sucesso!", "fechar");
+    this._productService.delete(id).subscribe({
+      next: () => {
+        this.openSnackBar("Produto deletado com sucesso!", "Fechar");
+      },
+      error: (e) => {
+        this.openSnackBar(`Falha ao deletar o produto. ${e}`, "Fechar");
+      }
     })
   }
 
   private openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action);
+    this._snackBar.open(message, action, { duration: 3000, horizontalPosition: "end", verticalPosition: "top" });
   }
 
 }
