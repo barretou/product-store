@@ -1,6 +1,6 @@
 <section>
     <div class="create-product-button-container">
-        <a mat-button class="create-product-button" color="primary" [routerLink]="['/createProduct']">CRIAR PRODUTO</a>
+        <a mat-button class="create-product-button" color="primary" [routerLink]="['/create-product']">CRIAR PRODUTO</a>
     </div>
     @for (item of products; track item.id) {
         <app-card [cardTitle]="item.title"></app-card>
