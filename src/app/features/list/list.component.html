@@ -1,8 +1,8 @@
 <section>
-    <ul>
-        @for (item of products; track item.id) {
-            <app-card [cardTitle]="item.title"></app-card>
-        }
-          
-    </ul>
+    <div class="create-product-button-container">
+        <a mat-button class="create-product-button" color="primary" [routerLink]="['/createProduct']">CRIAR PRODUTO</a>
+    </div>
+    @for (item of products; track item.id) {
+        <app-card [cardTitle]="item.title"></app-card>
+    }
 </section>
