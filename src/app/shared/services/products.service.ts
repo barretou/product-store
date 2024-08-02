@@ -16,4 +16,8 @@ export class ProductsService {
   create(newProduct: { title : string }) {
     return this._httpClient.post("/api/products", newProduct);
   }
+
+  delete(id : number) {
+    return this._httpClient.delete(`/api/products/${id}`);
+  }
 }
