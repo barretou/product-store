@@ -3,6 +3,6 @@
         <a mat-button class="create-product-button" color="primary" [routerLink]="['/create-product']">CRIAR PRODUTO</a>
     </div>
     @for (item of products; track item.id) {
-        <app-card [product]="item"></app-card>
+        <app-card [product]="item" (deleteSuccess)="onDeleteSuccess($event)"></app-card>
     }
 </section>

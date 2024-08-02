@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { Product } from '../../../../shared/interfaces/product.interface';
@@ -17,14 +17,18 @@ export class CardComponent {
   _snackBar = inject(MatSnackBar)
 
   @Input({ required: true }) product!: Product;
+  @Output() deleteSuccess = new EventEmitter<boolean>();
+
 
   public async deleteProduct(id : number) {
     this._productService.delete(id).subscribe({
       next: () => {
         this.openSnackBar("Produto deletado com sucesso!", "Fechar");
+        this.deleteSuccess.emit(true);
       },
       error: (e) => {
         this.openSnackBar(`Falha ao deletar o produto. ${e}`, "Fechar");
+        this.deleteSuccess.emit(false);
       }
     })
   }
