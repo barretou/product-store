@@ -1,6 +1,15 @@
 <mat-card class="card-product">
     <mat-card-header>
-      <mat-card-title>{{ product.title }}</mat-card-title>
+      <ng-container *ngIf="!isEdit">
+        <mat-card-title>{{ product.title }}</mat-card-title>
+      </ng-container>
+      <ng-container *ngIf="isEdit">
+        <mat-form-field>
+          <mat-label>Product Title</mat-label>
+          <input matInput type="text" [formControl]="newTaskTitle" placeholder="Título">
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="updateProduct(product.id)">Salvar</button>
+      </ng-container>
     </mat-card-header>
     <mat-card-content>
       <p class="card-description-product">
@@ -8,7 +17,7 @@
       </p>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-button color="primary">Editar</button>
+      <button *ngIf="!isEdit" mat-button color="primary" (click)="isEdit = !isEdit">Editar</button>
       <button mat-button color="warn" (click)="deleteProduct(product.id)">Deletar</button>
     </mat-card-actions>
   </mat-card>

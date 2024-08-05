@@ -17,6 +17,10 @@ export class ProductsService {
     return this._httpClient.post("/api/products", newProduct);
   }
 
+  update(id : number, productUpdated: { title : string }) {
+    return this._httpClient.put(`/api/products/${id}`, productUpdated);
+  }
+
   delete(id : number) {
     return this._httpClient.delete(`/api/products/${id}`);
   }

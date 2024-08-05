@@ -1,12 +1,8 @@
 {
   "products": [
     {
-      "id": "c054",
-      "title": "eu amo chocolate"
-    },
-    {
-      "id": "0c3a",
-      "title": "eu amo abacate"
+      "title": "E amo abacates",
+      "id": "0c3a"
     },
     {
       "id": "ae40",

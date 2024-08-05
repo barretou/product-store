@@ -28,6 +28,14 @@ export class ListComponent implements OnInit{
     });
   }
 
+  public onUpdateSuccess(isProductUpdated: boolean) {
+    if (isProductUpdated) {
+      this._productService.getAll().subscribe((products) => {
+        this.products = products;
+    });
+    }
+  }
+
   public onDeleteSuccess(isProductDeleted: boolean) {
     if (isProductDeleted) {
       this._productService.getAll().subscribe((products) => {
